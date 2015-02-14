@@ -3,22 +3,13 @@
         "name": "main",
         "environment": {
             "type": "noflo-nodejs"
-        }
+        },
+        "icon": "at"
     },
     "inports": {},
     "outports": {},
     "groups": [],
     "processes": {
-        "webserver/Server_3qlt1": {
-            "component": "webserver/Server",
-            "metadata": {
-                "label": "webserver/Server",
-                "x": 360,
-                "y": 324,
-                "width": 72,
-                "height": 72
-            }
-        },
         "woute/Match_g3tal": {
             "component": "woute/Match",
             "metadata": {
@@ -44,7 +35,7 @@
             "metadata": {
                 "label": "filesystem/ReadFile",
                 "x": 648,
-                "y": 468,
+                "y": 432,
                 "width": 72,
                 "height": 72
             }
@@ -58,20 +49,29 @@
                 "width": 72,
                 "height": 72
             }
+        },
+        "webserver/Server_sxylj": {
+            "component": "webserver/Server",
+            "metadata": {
+                "label": "webserver/Server",
+                "x": 324,
+                "y": 504,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/Output_lhsxa": {
+            "component": "core/Output",
+            "metadata": {
+                "label": "core/Output",
+                "x": 864,
+                "y": 720,
+                "width": 72,
+                "height": 72
+            }
         }
     },
     "connections": [
-        {
-            "src": {
-                "process": "webserver/Server_3qlt1",
-                "port": "request"
-            },
-            "tgt": {
-                "process": "woute/Match_g3tal",
-                "port": "in"
-            },
-            "metadata": {}
-        },
         {
             "src": {
                 "process": "woute/Match_g3tal",
@@ -106,11 +106,59 @@
             "metadata": {}
         },
         {
-            "data": 4343,
+            "src": {
+                "process": "webserver/Server_sxylj",
+                "port": "request"
+            },
             "tgt": {
-                "process": "webserver/Server_3qlt1",
-                "port": "listen"
-            }
+                "process": "woute/Match_g3tal",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "webserver/Server_sxylj",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "core/Output_lhsxa",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "filesystem/ReadFile_ftbp1",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "core/Output_lhsxa",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "webserver/Server_sxylj",
+                "port": "listening"
+            },
+            "tgt": {
+                "process": "core/Output_lhsxa",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "webserver/Server_sxylj",
+                "port": "server"
+            },
+            "tgt": {
+                "process": "core/Output_lhsxa",
+                "port": "in"
+            },
+            "metadata": {}
         },
         {
             "data": "index",
