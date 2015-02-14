@@ -14,17 +14,7 @@
             "component": "woute/Match",
             "metadata": {
                 "label": "woute/Match",
-                "x": 540,
-                "y": 324,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "kgkolev_ws-test/WriteBody_fursm": {
-            "component": "kgkolev_ws-test/WriteBody",
-            "metadata": {
-                "label": "kgkolev_ws-test/WriteBody",
-                "x": 792,
+                "x": 504,
                 "y": 324,
                 "width": 72,
                 "height": 72
@@ -44,7 +34,7 @@
             "component": "webserver/SendResponse",
             "metadata": {
                 "label": "webserver/SendResponse",
-                "x": 1044,
+                "x": 1080,
                 "y": 324,
                 "width": 72,
                 "height": 72
@@ -69,42 +59,19 @@
                 "width": 72,
                 "height": 72
             }
+        },
+        "write-body": {
+            "component": "kgkolev_ws-test/WriteBody",
+            "metadata": {
+                "label": "write-body",
+                "x": 792,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
         }
     },
     "connections": [
-        {
-            "src": {
-                "process": "woute/Match_g3tal",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "kgkolev_ws-test/WriteBody_fursm",
-                "port": "in"
-            },
-            "metadata": {}
-        },
-        {
-            "src": {
-                "process": "filesystem/ReadFile_ftbp1",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "kgkolev_ws-test/WriteBody_fursm",
-                "port": "string"
-            },
-            "metadata": {}
-        },
-        {
-            "src": {
-                "process": "kgkolev_ws-test/WriteBody_fursm",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "webserver/SendResponse_fneg3",
-                "port": "in"
-            },
-            "metadata": {}
-        },
         {
             "src": {
                 "process": "webserver/Server_sxylj",
@@ -161,6 +128,43 @@
             "metadata": {}
         },
         {
+            "src": {
+                "process": "woute/Match_g3tal",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "write-body",
+                "port": "in"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "filesystem/ReadFile_ftbp1",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "write-body",
+                "port": "string"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "write-body",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "webserver/SendResponse_fneg3",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
             "data": "index",
             "tgt": {
                 "process": "woute/Match_g3tal",
@@ -179,6 +183,13 @@
             "tgt": {
                 "process": "filesystem/ReadFile_ftbp1",
                 "port": "in"
+            }
+        },
+        {
+            "data": 4343,
+            "tgt": {
+                "process": "webserver/Server_sxylj",
+                "port": "listen"
             }
         }
     ]
