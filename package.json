@@ -1,0 +1,33 @@
+{
+  "name": "ws-test",
+  "version": "1.0.0",
+  "description": "Test NoFlo WebServer",
+  "main": "index.js",
+  "dependencies": {
+    "noflo": "^0.5.11",
+    "noflo-core": "^0.1.11",
+    "noflo-filesystem": "^1.0.6",
+    "noflo-nodejs": "^0.0.6",
+    "noflo-webserver": "^0.0.4",
+    "noflo-woute": "^0.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "-"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kgkolev/ws-test.git"
+  },
+  "keywords": [
+    "noflo",
+    "webserver",
+    "test"
+  ],
+  "author": "Kaloyan Kolev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kgkolev/ws-test/issues"
+  },
+  "homepage": "https://github.com/kgkolev/ws-test"
+}
