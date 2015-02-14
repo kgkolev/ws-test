@@ -8,6 +8,130 @@
     "inports": {},
     "outports": {},
     "groups": [],
-    "processes": {},
-    "connections": []
+    "processes": {
+        "webserver/Server_3qlt1": {
+            "component": "webserver/Server",
+            "metadata": {
+                "label": "webserver/Server",
+                "x": 360,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "woute/Match_g3tal": {
+            "component": "woute/Match",
+            "metadata": {
+                "label": "woute/Match",
+                "x": 540,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "kgkolev_ws-test/WriteBody_fursm": {
+            "component": "kgkolev_ws-test/WriteBody",
+            "metadata": {
+                "label": "kgkolev_ws-test/WriteBody",
+                "x": 792,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "filesystem/ReadFile_ftbp1": {
+            "component": "filesystem/ReadFile",
+            "metadata": {
+                "label": "filesystem/ReadFile",
+                "x": 648,
+                "y": 468,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "webserver/SendResponse_fneg3": {
+            "component": "webserver/SendResponse",
+            "metadata": {
+                "label": "webserver/SendResponse",
+                "x": 1044,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "webserver/Server_3qlt1",
+                "port": "request"
+            },
+            "tgt": {
+                "process": "woute/Match_g3tal",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "woute/Match_g3tal",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "kgkolev_ws-test/WriteBody_fursm",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "filesystem/ReadFile_ftbp1",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "kgkolev_ws-test/WriteBody_fursm",
+                "port": "string"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "kgkolev_ws-test/WriteBody_fursm",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "webserver/SendResponse_fneg3",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "data": 4343,
+            "tgt": {
+                "process": "webserver/Server_3qlt1",
+                "port": "listen"
+            }
+        },
+        {
+            "data": "index",
+            "tgt": {
+                "process": "woute/Match_g3tal",
+                "port": "match"
+            }
+        },
+        {
+            "data": "utf-8",
+            "tgt": {
+                "process": "filesystem/ReadFile_ftbp1",
+                "port": "encoding"
+            }
+        },
+        {
+            "data": "static/index.html",
+            "tgt": {
+                "process": "filesystem/ReadFile_ftbp1",
+                "port": "in"
+            }
+        }
+    ]
 }
