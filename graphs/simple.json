@@ -48,6 +48,16 @@
                 "width": 72,
                 "height": 72
             }
+        },
+        "core/Output_yhccv": {
+            "component": "core/Output",
+            "metadata": {
+                "label": "core/Output",
+                "x": 792,
+                "y": 360,
+                "width": 72,
+                "height": 72
+            }
         }
     },
     "connections": [
@@ -89,6 +99,17 @@
             "metadata": {}
         },
         {
+            "src": {
+                "process": "woute/Match_ek33m",
+                "port": "fail"
+            },
+            "tgt": {
+                "process": "core/Output_yhccv",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
             "data": 4343,
             "tgt": {
                 "process": "webserver/Server_izib3",
@@ -107,6 +128,13 @@
             "tgt": {
                 "process": "webserver/WriteResponse_yxzoh",
                 "port": "string"
+            }
+        },
+        {
+            "data": "GET",
+            "tgt": {
+                "process": "woute/Match_ek33m",
+                "port": "method"
             }
         }
     ]
