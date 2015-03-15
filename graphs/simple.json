@@ -29,39 +29,28 @@
                 "height": 72
             }
         },
-        "ws-test/WriteHttpBody_51qin": {
-            "component": "ws-test/WriteHttpBody",
+        "woute/Match_ek33m": {
+            "component": "woute/Match",
             "metadata": {
-                "label": "ws-test/WriteHttpBody",
-                "x": 792,
+                "label": "woute/Match",
+                "x": 612,
                 "y": 216,
                 "width": 72,
                 "height": 72
             }
         },
-        "woute/Match_ek33m": {
-            "component": "woute/Match",
+        "webserver/WriteResponse_yxzoh": {
+            "component": "webserver/WriteResponse",
             "metadata": {
-                "label": "woute/Match",
-                "x": 576,
-                "y": 324,
+                "label": "webserver/WriteResponse",
+                "x": 828,
+                "y": 216,
                 "width": 72,
                 "height": 72
             }
         }
     },
     "connections": [
-        {
-            "src": {
-                "process": "ws-test/WriteHttpBody_51qin",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "webserver/SendResponse_2bz3p",
-                "port": "in"
-            },
-            "metadata": {}
-        },
         {
             "src": {
                 "process": "webserver/Server_izib3",
@@ -81,7 +70,20 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "ws-test/WriteHttpBody_51qin",
+                "process": "webserver/WriteResponse_yxzoh",
+                "port": "in"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "webserver/WriteResponse_yxzoh",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "webserver/SendResponse_2bz3p",
                 "port": "in"
             },
             "metadata": {}
@@ -94,17 +96,17 @@
             }
         },
         {
-            "data": "my static index page",
-            "tgt": {
-                "process": "ws-test/WriteHttpBody_51qin",
-                "port": "string"
-            }
-        },
-        {
             "data": "index",
             "tgt": {
                 "process": "woute/Match_ek33m",
                 "port": "match"
+            }
+        },
+        {
+            "data": "My index page",
+            "tgt": {
+                "process": "webserver/WriteResponse_yxzoh",
+                "port": "string"
             }
         }
     ]
