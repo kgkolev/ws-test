@@ -1,0 +1,111 @@
+{
+    "properties": {
+        "name": "simple",
+        "environment": {
+            "type": "noflo-nodejs"
+        }
+    },
+    "inports": {},
+    "outports": {},
+    "groups": [],
+    "processes": {
+        "webserver/Server_izib3": {
+            "component": "webserver/Server",
+            "metadata": {
+                "label": "webserver/Server",
+                "x": 324,
+                "y": 216,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "webserver/SendResponse_2bz3p": {
+            "component": "webserver/SendResponse",
+            "metadata": {
+                "label": "webserver/SendResponse",
+                "x": 1152,
+                "y": 216,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "ws-test/WriteHttpBody_51qin": {
+            "component": "ws-test/WriteHttpBody",
+            "metadata": {
+                "label": "ws-test/WriteHttpBody",
+                "x": 792,
+                "y": 216,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "woute/Match_ek33m": {
+            "component": "woute/Match",
+            "metadata": {
+                "label": "woute/Match",
+                "x": 576,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "ws-test/WriteHttpBody_51qin",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "webserver/SendResponse_2bz3p",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "webserver/Server_izib3",
+                "port": "request"
+            },
+            "tgt": {
+                "process": "woute/Match_ek33m",
+                "port": "in"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "woute/Match_ek33m",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ws-test/WriteHttpBody_51qin",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "data": 4343,
+            "tgt": {
+                "process": "webserver/Server_izib3",
+                "port": "listen"
+            }
+        },
+        {
+            "data": "my static index page",
+            "tgt": {
+                "process": "ws-test/WriteHttpBody_51qin",
+                "port": "string"
+            }
+        },
+        {
+            "data": "index",
+            "tgt": {
+                "process": "woute/Match_ek33m",
+                "port": "match"
+            }
+        }
+    ]
+}
