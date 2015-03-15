@@ -9,50 +9,50 @@
     "outports": {},
     "groups": [],
     "processes": {
-        "webserver/Server_izib3": {
+        "WebSrv": {
             "component": "webserver/Server",
             "metadata": {
-                "label": "webserver/Server",
-                "x": 324,
+                "label": "WebSrv",
+                "x": 432,
                 "y": 216,
                 "width": 72,
                 "height": 72
             }
         },
-        "webserver/SendResponse_2bz3p": {
+        "SendIndex": {
             "component": "webserver/SendResponse",
             "metadata": {
-                "label": "webserver/SendResponse",
-                "x": 1152,
+                "label": "SendIndex",
+                "x": 1044,
                 "y": 216,
                 "width": 72,
                 "height": 72
             }
         },
-        "woute/Match_ek33m": {
+        "IndexMatcher": {
             "component": "woute/Match",
             "metadata": {
-                "label": "woute/Match",
-                "x": 612,
-                "y": 216,
+                "label": "IndexMatcher",
+                "x": 648,
+                "y": 144,
                 "width": 72,
                 "height": 72
             }
         },
-        "webserver/WriteResponse_yxzoh": {
+        "WriteIndex": {
             "component": "webserver/WriteResponse",
             "metadata": {
-                "label": "webserver/WriteResponse",
-                "x": 828,
-                "y": 216,
+                "label": "WriteIndex",
+                "x": 864,
+                "y": 180,
                 "width": 72,
                 "height": 72
             }
         },
-        "core/Output_yhccv": {
+        "StdOut": {
             "component": "core/Output",
             "metadata": {
-                "label": "core/Output",
+                "label": "StdOut",
                 "x": 792,
                 "y": 360,
                 "width": 72,
@@ -63,11 +63,11 @@
     "connections": [
         {
             "src": {
-                "process": "webserver/Server_izib3",
+                "process": "WebSrv",
                 "port": "request"
             },
             "tgt": {
-                "process": "woute/Match_ek33m",
+                "process": "IndexMatcher",
                 "port": "in"
             },
             "metadata": {
@@ -76,11 +76,11 @@
         },
         {
             "src": {
-                "process": "woute/Match_ek33m",
+                "process": "IndexMatcher",
                 "port": "out"
             },
             "tgt": {
-                "process": "webserver/WriteResponse_yxzoh",
+                "process": "WriteIndex",
                 "port": "in"
             },
             "metadata": {
@@ -89,22 +89,44 @@
         },
         {
             "src": {
-                "process": "webserver/WriteResponse_yxzoh",
+                "process": "WriteIndex",
                 "port": "out"
             },
             "tgt": {
-                "process": "webserver/SendResponse_2bz3p",
+                "process": "SendIndex",
                 "port": "in"
             },
             "metadata": {}
         },
         {
             "src": {
-                "process": "woute/Match_ek33m",
+                "process": "IndexMatcher",
                 "port": "fail"
             },
             "tgt": {
-                "process": "core/Output_yhccv",
+                "process": "StdOut",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "WebSrv",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "StdOut",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "WebSrv",
+                "port": "listening"
+            },
+            "tgt": {
+                "process": "StdOut",
                 "port": "in"
             },
             "metadata": {}
@@ -112,28 +134,28 @@
         {
             "data": 4343,
             "tgt": {
-                "process": "webserver/Server_izib3",
+                "process": "WebSrv",
                 "port": "listen"
             }
         },
         {
             "data": "index",
             "tgt": {
-                "process": "woute/Match_ek33m",
+                "process": "IndexMatcher",
                 "port": "match"
             }
         },
         {
             "data": "My index page",
             "tgt": {
-                "process": "webserver/WriteResponse_yxzoh",
+                "process": "WriteIndex",
                 "port": "string"
             }
         },
         {
             "data": "GET",
             "tgt": {
-                "process": "woute/Match_ek33m",
+                "process": "IndexMatcher",
                 "port": "method"
             }
         }
