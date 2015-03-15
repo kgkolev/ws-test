@@ -29,16 +29,6 @@
                 "height": 72
             }
         },
-        "IndexMatcher": {
-            "component": "woute/Match",
-            "metadata": {
-                "label": "IndexMatcher",
-                "x": 648,
-                "y": 144,
-                "width": 72,
-                "height": 72
-            }
-        },
         "WriteIndex": {
             "component": "webserver/WriteResponse",
             "metadata": {
@@ -63,48 +53,11 @@
     "connections": [
         {
             "src": {
-                "process": "WebSrv",
-                "port": "request"
-            },
-            "tgt": {
-                "process": "IndexMatcher",
-                "port": "in"
-            },
-            "metadata": {
-                "route": null
-            }
-        },
-        {
-            "src": {
-                "process": "IndexMatcher",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "WriteIndex",
-                "port": "in"
-            },
-            "metadata": {
-                "route": null
-            }
-        },
-        {
-            "src": {
                 "process": "WriteIndex",
                 "port": "out"
             },
             "tgt": {
                 "process": "SendIndex",
-                "port": "in"
-            },
-            "metadata": {}
-        },
-        {
-            "src": {
-                "process": "IndexMatcher",
-                "port": "fail"
-            },
-            "tgt": {
-                "process": "StdOut",
                 "port": "in"
             },
             "metadata": {}
@@ -139,24 +92,10 @@
             }
         },
         {
-            "data": "index",
-            "tgt": {
-                "process": "IndexMatcher",
-                "port": "match"
-            }
-        },
-        {
             "data": "My index page",
             "tgt": {
                 "process": "WriteIndex",
                 "port": "string"
-            }
-        },
-        {
-            "data": "GET",
-            "tgt": {
-                "process": "IndexMatcher",
-                "port": "method"
             }
         }
     ]
